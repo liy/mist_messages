@@ -35,6 +35,7 @@ message LightSensor {
 enum MessageType {
   SENSOR_QUERY = 0;
   COMMAND = 1;
+  SLAVERY_HANDSHAKE = 2;
 }
 
 message SensorQuery {
@@ -54,6 +55,12 @@ message Command {
     TimeSync time_sync = 3;
     SleepCycle sleep_cycle = 4;
   }
+}
+
+message SlaveryHandshake {
+  required MessageType message_type = 1;
+  optional bytes master_mac_addr = 3 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
+  optional bytes slave_mac_addr = 4 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
 }
 
 message TimeSync {
