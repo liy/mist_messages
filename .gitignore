@@ -1,0 +1,7 @@
+.env
+
+# generated message files
+messages.pb.c
+messages.pb.h
+
+.DS_Store
