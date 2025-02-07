@@ -39,7 +39,7 @@ enum MessageType {
 }
 
 message SensorQuery {
-  required MessageType message_type = 1;
+  required MessageType message_type = 1 [default = SENSOR_QUERY];
   required SensorType sensor_type = 2;
   oneof body {
     MistSensor mist_sensor = 3;
@@ -49,7 +49,7 @@ message SensorQuery {
 }
 
 message Command {
-  required MessageType message_type = 1;
+  required MessageType message_type = 1 [default = COMMAND];
   required int64 id = 2;
   oneof body {
     TimeSync time_sync = 3;
@@ -58,7 +58,7 @@ message Command {
 }
 
 message SlaveryHandshake {
-  required MessageType message_type = 1;
+  required MessageType message_type = 1 [default = SLAVERY_HANDSHAKE];
   optional bytes master_mac_addr = 2 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
   optional bytes slave_mac_addr = 3 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
 }
