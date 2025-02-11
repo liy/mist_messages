@@ -1,5 +1,5 @@
 # Collect all the protobuf(nanopb) generated .c files in the directory
-file(GLOB MAIN_SRCS "./*.c")
+file(GLOB MAIN_SRCS "messages.pb.c" "./*.c")
 
 # Collect all the nanopb pb_common.c, pb_encode.c, pb_decode.c source files in the directory
 file(GLOB NANOPB_SRCS "./nanopb/*.c")
