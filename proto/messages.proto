@@ -34,7 +34,7 @@ message LightSensor {
 
 enum MessageType {
   SENSOR_QUERY = 0;
-  COMMAND = 1;
+  SENSOR_COMMAND = 1;
   SLAVERY_HANDSHAKE = 2;
   SYNC_TIME = 3;
 }
@@ -49,11 +49,14 @@ message SensorQuery {
   }
 }
 
-message Command {
-  required MessageType message_type = 1 [default = COMMAND];
+message SensorCommand {
+  required MessageType message_type = 1 [default = SENSOR_COMMAND];
   required int64 id = 2;
+  optional bytes master_mac_addr = 3 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
+  optional bytes sensor_mac_addr = 4 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
   oneof body {
-    SleepCycle sleep_cycle = 4;
+    SleepCycle sleep_cycle = 5;
+    SampleRate sample_rate = 6;
   }
 }
 
@@ -69,7 +72,11 @@ message SyncTime {
 }
 
 message SleepCycle {
-  required int64 sleep_time = 2;
+  required int64 sleep_time = 1;
+}
+
+message SampleRate {
+  required uint64 rate = 1;
 }
 
 message ACK {
