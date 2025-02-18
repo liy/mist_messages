@@ -22,7 +22,8 @@ message AirSensor {
   required float temperature = 3;
   required float humidity = 4;
   required float pressure = 5;
-  required bytes mac_addr = 6 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
+  required int32 voc_index = 6;
+  required bytes mac_addr = 7 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
 }
 
 message LightSensor {
@@ -39,7 +40,7 @@ enum MessageType {
   SYNC_TIME = 3;
 }
 
-message SensorQuery {
+message SensorData {
   required MessageType message_type = 1 [default = SENSOR_QUERY];
   required SensorType sensor_type = 2;
   oneof body {
