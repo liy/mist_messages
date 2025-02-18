@@ -34,14 +34,14 @@ message LightSensor {
 }
 
 enum MessageType {
-  SENSOR_QUERY = 0;
+  SENSOR_DATA = 0;
   SENSOR_COMMAND = 1;
   SLAVERY_HANDSHAKE = 2;
   SYNC_TIME = 3;
 }
 
 message SensorData {
-  required MessageType message_type = 1 [default = SENSOR_QUERY];
+  required MessageType message_type = 1 [default = SENSOR_DATA];
   required SensorType sensor_type = 2;
   oneof body {
     MistSensor mist_sensor = 3;
