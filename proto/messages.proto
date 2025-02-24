@@ -37,7 +37,7 @@ message LightSensor {
 message SoilSensor {
   required SensorType sensor_type = 1 [default = SOIL_SENSOR];
   required int64 timestamp = 2 [default = 0];
-  required uint64 moisture = 3;
+  required float moisture = 3;
   required bytes mac_addr = 4 [(nanopb).max_size = 6, (nanopb).fixed_length = true];
 }
 
